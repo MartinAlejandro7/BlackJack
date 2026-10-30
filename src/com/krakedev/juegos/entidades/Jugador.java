@@ -13,4 +13,14 @@ public class Jugador {
 		
 		cartas.add(entregar);
 	}
+	
+	public void imprimir() {
+		System.out.println("NickName Jugador: " + nickname);
+		for(int i = 0; i< cartas.size(); i++) {
+			Carta car = cartas.get(i);
+			
+			car.imprimir();
+		
+		}
+	}
 }
