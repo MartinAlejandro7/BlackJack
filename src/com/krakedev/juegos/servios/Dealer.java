@@ -64,5 +64,15 @@ public class Dealer {
 		int aleatorio = (int)(Math.random()*(maximo+1));
 		return aleatorio;
 	 }
+	 
+	 public Carta entregarCarta() {
+		 int guardar = generarAleatorio(naipe.size()-1);
+		 
+		 Carta c = naipe.get(guardar);
+		 
+		 naipe.remove(guardar);
+	
+		 return c;
+	 }
 
 }
