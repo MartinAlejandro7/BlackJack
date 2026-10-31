@@ -11,11 +11,10 @@ public class Juego21 {
 
 	private Dealer dealer;
 
-	
 	public Juego21() {
-	    jugadores = new ArrayList<Jugador>();
+		jugadores = new ArrayList<Jugador>();
 	}
-	
+
 	public ArrayList<Jugador> getJugadores() {
 		return jugadores;
 	}
@@ -69,23 +68,57 @@ public class Juego21 {
 			Jugador j = jugadores.get(i);
 			repartirCarta(j);
 		}
-		
+
 		calcularTotal();
 	}
-	
+
 	public void calcularTotal() {
-		
-		for(int i = 0; i < jugadores.size(); i++) {
+
+		for (int i = 0; i < jugadores.size(); i++) {
 			Jugador j = jugadores.get(i);
 			int total = 0;
-			
-			for(int a = 0 ; a < j.getCartas().size(); a++) {
+
+			for (int a = 0; a < j.getCartas().size(); a++) {
 				Carta n = j.getCartas().get(a);
 				n.getValorJuego();
 				total = total + n.getValorJuego();
-				
+
 			}
 			j.setPuntajeCartas(total);
 		}
+	}
+
+	public ArrayList<Jugador> validarGanador() {
+
+		ArrayList<Jugador> ganadores = new ArrayList<Jugador>();
+
+		for (int i = 0; i < jugadores.size(); i++) {
+
+			Jugador j = jugadores.get(i);
+
+			if (j.getPuntajeCartas() == 21) {
+				ganadores.add(j);
+			}
+		}
+
+		return ganadores;
+	}
+
+	public ArrayList<Jugador> jugar() {
+
+		ArrayList<Jugador> ganadores = new ArrayList<Jugador>();
+
+		for (int i = 0; i < 3; i++) {
+
+			repartirRonda();
+
+			ganadores = validarGanador();
+
+			if (ganadores.size() > 0) {
+				break;
+			}
+		}
+
+		return ganadores;
 	}
 }
